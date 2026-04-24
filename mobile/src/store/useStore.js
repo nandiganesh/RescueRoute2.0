@@ -1,9 +1,11 @@
 import { create } from 'zustand';
 
 const useStore = create((set) => ({
-  volunteerId: 1, // Mock volunteer ID
+  volunteerId: 2, // Mock volunteer ID from db.js (John Doe)
+  restaurantId: 1, // Mock restaurant ID from db.js (Fresh Bakes)
+  shelterId: 4, // Mock shelter ID from db.js (City Shelter)
   isOnline: true,
-  currentLocation: { latitude: 37.7749, longitude: -122.4194 },
+  currentLocation: { latitude: 17.385, longitude: 78.4867 }, // Set to Hyderabad coordinates for demo
   activeDelivery: null,
   
   setOnline: (status) => set({ isOnline: status }),

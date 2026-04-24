@@ -6,6 +6,8 @@ const deliveryController = require('../controllers/deliveryController');
 const locationController = require('../controllers/locationController');
 
 // Donations
+router.get('/donations/active', donationController.getActiveDonations);
+router.get('/donations/nearby', donationController.getNearbyDonations);
 router.post('/donations', donationController.createDonation);
 
 // Volunteers

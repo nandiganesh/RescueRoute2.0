@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import useStore from '../store/useStore';
+import MapComponent from '../components/MapComponent';
 
 export default function ActivePickupScreen({ navigation }) {
   const { currentLocation, activeDelivery } = useStore();
@@ -13,7 +14,7 @@ export default function ActivePickupScreen({ navigation }) {
       <SafeAreaView style={styles.header}>
         <Text style={styles.headerTitle}>RescueRoute</Text>
       </SafeAreaView>
-      <MapView
+      <MapComponent
         style={styles.map}
         initialRegion={{
           latitude: currentLocation.latitude,
@@ -22,12 +23,11 @@ export default function ActivePickupScreen({ navigation }) {
           longitudeDelta: 0.05,
         }}
         showsUserLocation
-      >
-        <Marker
-          coordinate={{ latitude: activeDelivery.lat, longitude: activeDelivery.lng }}
-          title={activeDelivery.restaurant}
-        />
-      </MapView>
+        marker={{
+          coordinate: { latitude: activeDelivery.lat, longitude: activeDelivery.lng },
+          title: activeDelivery.restaurant
+        }}
+      />
 
       <View style={styles.bottomSheet}>
         <View style={styles.dragHandle} />

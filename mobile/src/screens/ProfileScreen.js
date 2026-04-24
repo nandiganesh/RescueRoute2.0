@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, Switch, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Switch, TouchableOpacity, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import useStore from '../store/useStore';
 
 export default function ProfileScreen() {

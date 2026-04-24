@@ -14,6 +14,11 @@ const io = new Server(server, { cors: { origin: '*' } });
 app.use(cors());
 app.use(express.json());
 
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    next();
+});
+
 // Health check
 app.get('/', (req, res) => {
     res.json({
@@ -66,7 +71,7 @@ io.on('connection', (socket) => {
 app.set('io', io);
 
 const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
     console.log(`\n🚀 RescueRoute Backend running on http://localhost:${PORT}`);
     console.log(`   Mode: ${db.DEMO_MODE ? '⚠️  DEMO (in-memory data)' : '✅ Production (PostgreSQL + Redis)'}`);
     console.log(`\n📋 Try these commands:`);

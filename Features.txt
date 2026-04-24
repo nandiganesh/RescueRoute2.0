@@ -1,0 +1,484 @@
+**********************************************************************VOLUNTEER*****************************************************************************
+
+You are a senior product designer and mobile app architect.
+
+Your task is to design the **Volunteer (Driver) experience** for a real-time food rescue logistics platform called **RescueRoute**.
+
+---
+
+## 🚨 CORE OBJECTIVE
+
+Design features that help a volunteer:
+
+* receive requests quickly
+* accept tasks instantly
+* navigate efficiently
+* complete deliveries reliably
+
+The experience should be similar to delivery apps like Swiggy, Zomato, and Uber driver apps.
+
+---
+
+## ⚠️ IMPORTANT RULES
+
+* Prioritize **speed and simplicity**
+* Every feature must reduce friction
+* Avoid unnecessary or “nice-to-have” features
+* Focus on real-world usability, not theory
+
+---
+
+## 🧱 REQUIRED FEATURE CATEGORIES
+
+---
+
+### 🔥 1. CORE FEATURES (MANDATORY)
+
+These features are required for the system to function:
+
+1. Real-time pickup notifications
+
+   * Show distance, food type, expiry
+
+2. Live map with nearby requests
+
+   * Show current location
+   * Show donation pins
+
+3. One-tap accept / decline
+
+   * Instant assignment
+
+4. Navigation system
+
+   * Route to restaurant
+   * Route to shelter
+   * Show ETA and distance
+
+5. Pickup confirmation
+
+   * Checklist (sealed, expiry, safe)
+   * Photo upload
+
+6. Delivery confirmation
+
+   * Upload proof
+   * Mark delivery complete
+
+7. Live location tracking
+
+   * Background updates
+
+8. Delivery status flow
+   States:
+
+   * available
+   * assigned
+   * en_route_pickup
+   * picked_up
+   * delivering
+   * completed
+
+---
+
+### ⚙️ 2. HIGH-IMPACT FEATURES
+
+These improve usability significantly:
+
+9. Availability toggle (online/offline)
+
+10. Auto-cancel / timeout system
+
+* If inactive → reassign
+
+11. Smart notifications
+
+* reminders
+* updates
+
+12. Basic stats dashboard
+
+* deliveries completed
+* meals delivered
+
+---
+
+### 🧠 3. ADVANCED FEATURES (OPTIONAL)
+
+Only include if core is complete:
+
+13. Smart job suggestions
+
+* Recommend best pickup
+
+14. Incentive tracking
+
+* rewards / fuel compensation
+
+15. Reliability score
+
+* based on performance
+
+16. Multi-stop routing (batch pickups)
+
+17. Gamification
+
+* points, badges, leaderboard
+
+---
+
+## 📱 OUTPUT REQUIREMENTS
+
+You MUST provide:
+
+1. Feature list organized by priority
+2. User flow (step-by-step journey)
+3. Screen breakdown for each feature
+4. UI components required
+5. Interaction logic (what happens on tap)
+
+---
+
+## ❌ DO NOT
+
+* Do NOT include unnecessary features
+* Do NOT overcomplicate the system
+* Do NOT focus on visuals only
+* Do NOT ignore real-world constraints
+
+---
+
+## 🎯 FINAL GOAL
+
+Design a volunteer experience that:
+
+* works under time pressure
+* minimizes user effort
+* maximizes delivery success rate
+
+This should feel like a **real delivery driver app**, not a concept.
+
+
+***************************************************************************HOTEL ROLE***********************************************************************
+
+You are a senior product designer and system architect.
+
+Your task is to design the **Restaurant (Hotel) experience** for a food rescue logistics platform called **RescueRoute**.
+
+---
+
+## 🎯 CORE OBJECTIVE
+
+Design features that allow restaurants to:
+
+* report surplus food in under 10 seconds
+* ensure quick pickup
+* track donation status
+* minimize effort and liability
+
+The system should feel as simple and fast as possible, similar in responsiveness to apps like Zomato or Swiggy merchant tools.
+
+---
+
+## ⚠️ IMPORTANT RULES
+
+* Minimize steps (no long forms)
+* Reduce friction to near zero
+* Prioritize speed over features
+* Every action should take 1–2 taps maximum
+
+---
+
+## 🧱 REQUIRED FEATURE CATEGORIES
+
+---
+
+### 🔥 1. CORE FEATURES (MANDATORY)
+
+These are essential for real-world usage:
+
+1. One-tap food donation
+
+   * Button: “Donate Surplus Food”
+
+2. Quick input (fast form)
+
+   * food type (dropdown)
+   * quantity
+   * expiry time
+   * optional photo
+
+3. Instant submission
+
+   * no long forms
+   * no complex validation
+
+4. Live status tracking
+
+   * waiting for volunteer
+   * volunteer assigned
+   * pickup in progress
+   * completed
+
+5. Volunteer details
+
+   * name
+   * ETA
+   * contact (optional)
+
+6. Pickup confirmation
+
+   * confirmation when food is collected
+
+---
+
+### ⚙️ 2. HIGH-IMPACT FEATURES
+
+These improve usability and trust:
+
+7. Auto-fill previous entries
+
+   * repeat common food types
+
+8. Scheduled donation option
+
+   * e.g., “daily at 9 PM”
+
+9. Notification system
+
+   * volunteer assigned
+   * pickup arriving
+   * delivery completed
+
+10. Donation history
+
+* list of past donations
+
+---
+
+### 🧠 3. ADVANCED FEATURES (OPTIONAL)
+
+Only include after core works:
+
+11. Analytics dashboard
+
+* total food donated
+* impact (meals served)
+
+12. Tax / CSR reports
+
+* downloadable summaries
+
+13. Smart suggestions
+
+* suggest donation time based on patterns
+
+---
+
+## 📱 USER FLOW (CRITICAL)
+
+1. Restaurant opens app
+2. Taps “Donate Food”
+3. Enters basic details (5–10 sec max)
+4. Submits
+5. System finds volunteer
+6. Restaurant sees status updates
+7. Volunteer arrives → pickup confirmed
+8. Donation completed
+
+---
+
+## 📲 UI REQUIREMENTS
+
+* Clean, minimal interface
+* Large buttons
+* Fast input fields
+* Clear status indicators
+* No clutter
+
+---
+
+## 🧩 UI COMPONENTS
+
+* Quick action button (primary CTA)
+* Simple input form
+* Status tracker (step indicator)
+* Notification alerts
+* History list
+
+---
+
+## ❌ DO NOT
+
+* Do NOT create long forms
+* Do NOT require multiple confirmations
+* Do NOT add unnecessary steps
+* Do NOT overload UI
+
+---
+
+## 🎯 FINAL GOAL
+
+Design a restaurant experience that:
+
+* takes less than 10 seconds to post food
+* requires almost no thinking
+* ensures reliable pickup tracking
+
+This should feel like a **fast utility tool**, not a complex app.
+
+
+****************************************************************************SHELTER*************************************************************************
+
+
+You are a senior product designer and system architect.
+
+Your task is to design the **Shelter (Receiver) experience** for a food rescue logistics platform called **RescueRoute**.
+
+---
+
+## 🎯 CORE OBJECTIVE
+
+Design features that allow shelters to:
+
+* specify their food needs clearly
+* receive only relevant donations
+* manage incoming deliveries efficiently
+* confirm and track received food
+
+The system should reduce overload, waste, and confusion.
+
+---
+
+## ⚠️ IMPORTANT RULES
+
+* Do NOT treat shelters as passive users
+* Avoid sending irrelevant or excessive food
+* Prioritize clarity and control
+* Keep interface simple and fast
+
+---
+
+## 🧱 REQUIRED FEATURE CATEGORIES
+
+---
+
+### 🔥 1. CORE FEATURES (MANDATORY)
+
+1. Food requirement setup
+
+   * select food types (meals, vegetables, protein, etc)
+   * set quantity needs
+   * update daily
+
+2. Availability status
+
+   * open / closed
+   * capacity limits
+
+3. Incoming delivery notifications
+
+   * food type
+   * quantity
+   * ETA
+
+4. Delivery confirmation
+
+   * confirm receipt
+   * verify condition
+   * mark accepted or rejected
+
+5. Live delivery tracking
+
+   * track volunteer location
+   * estimated arrival
+
+---
+
+### ⚙️ 2. HIGH-IMPACT FEATURES
+
+6. Capacity management
+
+   * set max intake limit
+   * prevent overflow
+
+7. Smart filtering
+
+   * accept only needed food categories
+
+8. Delivery history
+
+   * track past donations
+
+9. Issue reporting
+
+   * spoiled food
+   * incorrect quantity
+
+---
+
+### 🧠 3. ADVANCED FEATURES (OPTIONAL)
+
+10. Demand forecasting
+
+* suggest required food based on past data
+
+11. Nutrition balancing
+
+* highlight missing categories (protein, vegetables)
+
+12. Priority scoring
+
+* system ranks urgency of shelter
+
+---
+
+## 📱 USER FLOW
+
+1. Shelter updates food requirements
+2. System matches incoming donations
+3. Shelter receives notification
+4. Shelter views incoming delivery
+5. Shelter tracks volunteer
+6. Delivery arrives
+7. Shelter verifies and confirms
+
+---
+
+## 📲 UI REQUIREMENTS
+
+* clean and simple layout
+* clear incoming delivery cards
+* status indicators
+* easy confirmation actions
+
+---
+
+## 🧩 UI COMPONENTS
+
+* requirement selection panel
+* delivery notification cards
+* status tracker
+* confirmation buttons
+* history list
+
+---
+
+## ❌ DO NOT
+
+* Do NOT overload shelters with unnecessary food
+* Do NOT remove control from shelters
+* Do NOT create complex workflows
+* Do NOT ignore capacity limits
+
+---
+
+## 🎯 FINAL GOAL
+
+Design a shelter experience that:
+
+* ensures relevant and manageable food deliveries
+* minimizes waste and overload
+* gives shelters full control
+
+This should feel like a **control dashboard**, not just a receiving app.

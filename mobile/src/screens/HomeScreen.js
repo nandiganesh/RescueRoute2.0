@@ -1,37 +1,51 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import useStore from '../store/useStore';
-import { acceptDelivery } from '../services/api';
+import { acceptDelivery, getNearbyDonations } from '../services/api';
+import MapComponent from '../components/MapComponent';
 
 export default function HomeScreen({ navigation }) {
   const { currentLocation, isOnline, volunteerId, setActiveDelivery } = useStore();
   const [nearbyDonation, setNearbyDonation] = useState(null);
 
   useEffect(() => {
-    if (isOnline) {
-      setTimeout(() => {
-        setNearbyDonation({
-          id: 101,
-          restaurant: 'Fresh Bakes',
-          distance: '1.2 km',
-          quantity: '5 meals',
-          foodType: 'Bakery items',
-          expiry: '45 mins',
-          lat: currentLocation.latitude + 0.01,
-          lng: currentLocation.longitude + 0.01
-        });
-      }, 5000);
+    let interval;
+    if (isOnline && currentLocation) {
+      const fetchDonations = async () => {
+        try {
+          const response = await getNearbyDonations(currentLocation.latitude, currentLocation.longitude);
+          if (response && response.data && response.data.length > 0) {
+            // For demo, just show the first one
+            setNearbyDonation(response.data[0]);
+          } else {
+            setNearbyDonation(null);
+          }
+        } catch (error) {
+          console.log('Fetch donations failed', error);
+        }
+      };
+
+      fetchDonations();
+      interval = setInterval(fetchDonations, 10000);
+    } else {
+      setNearbyDonation(null);
     }
+    return () => clearInterval(interval);
   }, [isOnline, currentLocation]);
 
   const handleAccept = async () => {
     try {
-      // await acceptDelivery(volunteerId, nearbyDonation.id);
+      if (!nearbyDonation.delivery_id) {
+        alert('This donation is already being processed.');
+        return;
+      }
+      await acceptDelivery(volunteerId, nearbyDonation.delivery_id);
       setActiveDelivery(nearbyDonation);
       navigation.navigate('ActivePickup');
     } catch (error) {
       console.log('Accept failed', error);
+      alert('Could not accept delivery. It might have been taken by someone else.');
     }
   };
 
@@ -40,7 +54,7 @@ export default function HomeScreen({ navigation }) {
       <SafeAreaView style={styles.header}>
         <Text style={styles.headerTitle}>RescueRoute</Text>
       </SafeAreaView>
-      <MapView
+      <MapComponent
         style={styles.map}
         initialRegion={{
           latitude: currentLocation.latitude,
@@ -49,25 +63,22 @@ export default function HomeScreen({ navigation }) {
           longitudeDelta: 0.05,
         }}
         showsUserLocation
-      >
-        {nearbyDonation && (
-          <Marker
-            coordinate={{ latitude: nearbyDonation.lat, longitude: nearbyDonation.lng }}
-            title={nearbyDonation.restaurant}
-          />
-        )}
-      </MapView>
+        marker={nearbyDonation ? {
+          coordinate: { latitude: nearbyDonation.lat, longitude: nearbyDonation.lng },
+          title: nearbyDonation.restaurant_name
+        } : null}
+      />
 
       {nearbyDonation && (
         <View style={styles.bottomSheet}>
           <View style={styles.dragHandle} />
           <Text style={styles.title}>New Pickup Request</Text>
           <View style={styles.infoRow}>
-            <Text style={styles.restaurant}>{nearbyDonation.restaurant}</Text>
+            <Text style={styles.restaurant}>{nearbyDonation.restaurant_name}</Text>
             <Text style={styles.distance}>{nearbyDonation.distance}</Text>
           </View>
-          <Text style={styles.detail}>{nearbyDonation.quantity} • {nearbyDonation.foodType}</Text>
-          <Text style={styles.urgent}>Expires in {nearbyDonation.expiry}</Text>
+          <Text style={styles.detail}>{nearbyDonation.quantity} meals • {nearbyDonation.food_details}</Text>
+          <Text style={styles.urgent}>Expires: {new Date(nearbyDonation.expiry_time).toLocaleTimeString()}</Text>
           
           <View style={styles.row}>
             <TouchableOpacity style={styles.declineBtn} onPress={() => setNearbyDonation(null)}>

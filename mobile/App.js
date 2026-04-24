@@ -15,14 +15,17 @@ export default function App() {
     const unsubscribeNotifications = setupNotificationListener();
 
     // Start Location Tracking if online
-    let unsubscribeLocation;
-    if (isOnline && volunteerId) {
-      unsubscribeLocation = startLocationTracking(volunteerId);
-    }
+    let stopTracking;
+    const initTracking = async () => {
+      if (isOnline && volunteerId) {
+        stopTracking = await startLocationTracking(volunteerId);
+      }
+    };
+    initTracking();
 
     return () => {
       unsubscribeNotifications();
-      if (unsubscribeLocation) unsubscribeLocation();
+      if (stopTracking) stopTracking();
     };
   }, [isOnline, volunteerId]);
 

@@ -20,7 +20,7 @@ const tables = {
     { id: 5, name: 'Mike Wilson', email: 'mike@volunteer.com', phone: '555-0005', role: 'volunteer', created_at: new Date() },
   ],
   restaurants: [
-    { user_id: 1, address: '123 Main St', lat: 17.385, lng: 78.4867 },
+    { user_id: 1, name: 'Fresh Bakes', address: '123 Main St', lat: 17.385, lng: 78.4867 },
   ],
   volunteers: [
     { user_id: 2, rating: 4.8, total_deliveries: 42, is_active: true, last_lat: 17.390, last_lng: 78.490, fcm_token: null, updated_at: new Date() },
