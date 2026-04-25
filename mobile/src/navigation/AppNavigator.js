@@ -12,6 +12,9 @@ import ProfileScreen from '../screens/ProfileScreen';
 
 import RestaurantDashboardScreen from '../screens/restaurant/RestaurantDashboardScreen';
 import NewDonationScreen from '../screens/restaurant/NewDonationScreen';
+import RestaurantProfileScreen from '../screens/restaurant/RestaurantProfileScreen';
+import DonationHistoryScreen from '../screens/restaurant/DonationHistoryScreen';
+import RestaurantNotificationsScreen from '../screens/restaurant/RestaurantNotificationsScreen';
 
 import ShelterDashboardScreen from '../screens/shelter/ShelterDashboardScreen';
 
@@ -35,12 +38,20 @@ function VolunteerTab() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: '#2ecc71',
-        tabBarInactiveTintColor: 'gray',
+        tabBarActiveTintColor: '#FC8019',
+        tabBarInactiveTintColor: '#BBBBBB',
+        tabBarStyle: { 
+          backgroundColor: '#FFFFFF', 
+          borderTopColor: '#EEEEEE',
+          height: 60,
+          paddingBottom: 8,
+          paddingTop: 8,
+        },
+        tabBarLabelStyle: { fontSize: 12, fontWeight: '700' },
       }}
     >
-      <Tab.Screen name="Home" component={HomeStack} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="Home" component={HomeStack} options={{ tabBarLabel: 'Deliveries' }} />
+      <Tab.Screen name="Profile" component={ProfileScreen} options={{ tabBarLabel: 'Profile' }} />
     </Tab.Navigator>
   );
 }
@@ -50,6 +61,9 @@ function RestaurantStack() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="RestaurantDashboard" component={RestaurantDashboardScreen} />
       <Stack.Screen name="NewDonation" component={NewDonationScreen} />
+      <Stack.Screen name="RestaurantProfile" component={RestaurantProfileScreen} />
+      <Stack.Screen name="DonationHistory" component={DonationHistoryScreen} />
+      <Stack.Screen name="RestaurantNotifications" component={RestaurantNotificationsScreen} />
     </Stack.Navigator>
   );
 }

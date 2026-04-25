@@ -24,8 +24,8 @@ export default function ActivePickupScreen({ navigation }) {
         }}
         showsUserLocation
         marker={{
-          coordinate: { latitude: activeDelivery.lat, longitude: activeDelivery.lng },
-          title: activeDelivery.restaurant
+          coordinate: { latitude: parseFloat(activeDelivery.lat), longitude: parseFloat(activeDelivery.lng) },
+          title: activeDelivery.restaurant_name || activeDelivery.restaurant
         }}
       />
 
@@ -34,7 +34,7 @@ export default function ActivePickupScreen({ navigation }) {
         <View style={styles.badgeContainer}>
           <Text style={styles.badgeText}>En Route to Pickup</Text>
         </View>
-        <Text style={styles.title}>{activeDelivery.restaurant}</Text>
+        <Text style={styles.title}>{activeDelivery.restaurant_name || activeDelivery.restaurant}</Text>
         
         <View style={styles.infoBox}>
           <View style={styles.infoItem}>
@@ -43,8 +43,13 @@ export default function ActivePickupScreen({ navigation }) {
           </View>
           <View style={styles.divider} />
           <View style={styles.infoItem}>
+            <Text style={styles.infoLabel}>Items</Text>
+            <Text style={styles.infoValue}>{activeDelivery.quantity}</Text>
+          </View>
+          <View style={styles.divider} />
+          <View style={styles.infoItem}>
             <Text style={styles.infoLabel}>ETA</Text>
-            <Text style={styles.infoValue}>5 mins</Text>
+            <Text style={styles.infoValue}>5 min</Text>
           </View>
         </View>
 
@@ -60,28 +65,24 @@ export default function ActivePickupScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f9fafb' },
+  container: { flex: 1, backgroundColor: '#FAFAFA' },
   header: {
-    backgroundColor: '#ffffff',
-    paddingVertical: 16,
+    backgroundColor: '#FFFFFF',
+    paddingVertical: 12,
     paddingHorizontal: 20,
     borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
+    borderBottomColor: '#EEEEEE',
     zIndex: 10,
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowRadius: 5,
-    shadowOffset: { width: 0, height: 2 },
     elevation: 2,
   },
-  headerTitle: { fontSize: 22, fontWeight: '800', color: '#2ecc71', letterSpacing: -0.5 },
+  headerTitle: { fontSize: 22, fontWeight: '800', color: '#FC8019', letterSpacing: -0.5 },
   map: { flex: 1 },
   bottomSheet: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#FFFFFF',
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     padding: 24,
@@ -92,36 +93,15 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: -5 },
     elevation: 10,
   },
-  dragHandle: {
-    width: 40,
-    height: 4,
-    backgroundColor: '#e0e0e0',
-    borderRadius: 2,
-    alignSelf: 'center',
-    marginBottom: 20,
-  },
-  badgeContainer: {
-    backgroundColor: '#e8f8f0',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 16,
-    alignSelf: 'flex-start',
-    marginBottom: 12,
-  },
-  badgeText: { color: '#2ecc71', fontWeight: '700', fontSize: 12, textTransform: 'uppercase', letterSpacing: 0.5 },
+  dragHandle: { width: 40, height: 4, backgroundColor: '#EEEEEE', borderRadius: 2, alignSelf: 'center', marginBottom: 20 },
+  badgeContainer: { backgroundColor: '#FFF5ED', paddingHorizontal: 12, paddingVertical: 6, borderRadius: 16, alignSelf: 'flex-start', marginBottom: 12 },
+  badgeText: { color: '#FC8019', fontWeight: '700', fontSize: 12, textTransform: 'uppercase', letterSpacing: 0.5 },
   title: { fontSize: 24, fontWeight: '800', color: '#333333', marginBottom: 20 },
-  infoBox: {
-    flexDirection: 'row',
-    backgroundColor: '#f9fafb',
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 24,
-    alignItems: 'center',
-  },
+  infoBox: { flexDirection: 'row', backgroundColor: '#FAFAFA', borderRadius: 16, padding: 16, marginBottom: 24, alignItems: 'center', borderWidth: 1, borderColor: '#EEEEEE' },
   infoItem: { flex: 1, alignItems: 'center' },
-  infoLabel: { fontSize: 13, color: '#666666', marginBottom: 4, fontWeight: '500' },
-  infoValue: { fontSize: 18, fontWeight: '700', color: '#333333' },
-  divider: { width: 1, height: 30, backgroundColor: '#e0e0e0' },
-  btn: { backgroundColor: '#2ecc71', height: 50, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
-  btnText: { color: '#ffffff', fontWeight: '700', fontSize: 16 },
+  infoLabel: { fontSize: 12, color: '#888888', marginBottom: 4, fontWeight: '600' },
+  infoValue: { fontSize: 18, fontWeight: '800', color: '#333333' },
+  divider: { width: 1, height: 30, backgroundColor: '#EEEEEE' },
+  btn: { backgroundColor: '#FC8019', height: 56, borderRadius: 16, alignItems: 'center', justifyContent: 'center', shadowColor: '#FC8019', shadowOpacity: 0.3, shadowRadius: 10, shadowOffset: { width: 0, height: 4 }, elevation: 4 },
+  btnText: { color: '#FFFFFF', fontWeight: '800', fontSize: 18 },
 });

@@ -1,17 +1,33 @@
 import axios from 'axios';
 
+// Try direct IP first (phone and laptop on same WiFi)
+// If this gives Network Error, switch to the tunnel URL below
 const api = axios.create({
-  // For local development, use your machine's IP (not localhost) so the phone/emulator can reach it
-  // Replace with your deployed URL (e.g., Render) for production
-  baseURL: 'http://10.29.123.65:3000/api',
-  timeout: 10000,
+  // Direct IP - phone reaches this IP (Expo works on 192.168.1.8:8081)
+  baseURL: 'http://192.168.1.8:8082/api',
+  timeout: 30000,
+  headers: {
+    'Content-Type': 'application/json',
+  }
 });
 
+// Add response interceptor for debugging
+api.interceptors.response.use(
+  response => {
+    console.log(`✅ API ${response.config.method?.toUpperCase()} ${response.config.url} - ${response.status}`);
+    return response;
+  },
+  error => {
+    console.error(`❌ API Error: ${error.config?.url} - ${error.message}`);
+    throw error; // DO NOT swallow - let caller handle
+  }
+);
+
 export const updateLocation = (volunteer_id, lat, lng) => 
-  api.post('/location/update', { volunteer_id, lat, lng }).catch(e => console.log(e));
+  api.post('/location/update', { volunteer_id, lat, lng }).catch(e => console.log('Location update failed:', e.message));
 
 export const getNearbyDonations = (lat, lng) =>
-  api.get(`/donations/nearby?lat=${lat}&lng=${lng}`).catch(e => console.log(e));
+  api.get(`/donations/nearby?lat=${lat}&lng=${lng}`);
 
 export const acceptDelivery = (volunteer_id, delivery_id) =>
   api.post('/deliveries/accept', { volunteer_id, delivery_id });

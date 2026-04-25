@@ -20,7 +20,7 @@ exports.getActiveDonations = async (req, res) => {
 };
 
 exports.getNearbyDonations = async (req, res) => {
-    const { lat, lng, radius_km = 10 } = req.query;
+    const { lat, lng, radius_km = 10000 } = req.query;
     if (!lat || !lng) return res.status(400).json({ error: 'lat and lng required' });
 
     try {

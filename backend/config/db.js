@@ -30,8 +30,14 @@ const tables = {
   shelters: [
     { user_id: 4, address: '456 Shelter Rd', lat: 17.375, lng: 78.480, capacity: 100, demand_score: 0 },
   ],
-  donations: [],
-  deliveries: [],
+  donations: [
+    { id: 99, restaurant_id: 1, food_details: 'Rice and Dal', quantity: 20, expiry_time: new Date(Date.now() + 3600000), status: 'available', created_at: new Date() },
+    { id: 98, restaurant_id: 1, food_details: 'Bread and Jam', quantity: 15, expiry_time: new Date(Date.now() + 7200000), status: 'available', created_at: new Date() },
+  ],
+  deliveries: [
+    { id: 99, donation_id: 99, volunteer_id: null, status: 'assigned', assigned_at: new Date() },
+    { id: 98, donation_id: 98, volunteer_id: null, status: 'assigned', assigned_at: new Date() },
+  ],
   notifications: [],
 };
 

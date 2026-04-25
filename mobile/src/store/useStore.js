@@ -12,6 +12,7 @@ const useStore = create((set) => ({
   setCurrentLocation: (loc) => set({ currentLocation: loc }),
   setActiveDelivery: (delivery) => set({ activeDelivery: delivery }),
   clearActiveDelivery: () => set({ activeDelivery: null }),
+  logout: () => set({ activeDelivery: null, isOnline: false }),
 }));
 
 export default useStore;

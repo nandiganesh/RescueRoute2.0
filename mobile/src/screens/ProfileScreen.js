@@ -15,6 +15,7 @@ export default function ProfileScreen() {
           </View>
           <Text style={styles.name}>John Doe</Text>
           <View style={[styles.statusBadge, isOnline ? styles.statusOnline : styles.statusOffline]}>
+            <View style={[styles.statusDot, isOnline ? styles.dotOnline : styles.dotOffline]} />
             <Text style={[styles.statusText, isOnline ? styles.statusTextOnline : styles.statusTextOffline]}>
               {isOnline ? 'AVAILABLE' : 'OFFLINE'}
             </Text>
@@ -24,32 +25,47 @@ export default function ProfileScreen() {
         <View style={styles.statsRow}>
           <View style={styles.statBox}>
             <Text style={styles.statNum}>142</Text>
-            <Text style={styles.statLabel}>Total Deliveries</Text>
+            <Text style={styles.statLabel}>Deliveries</Text>
           </View>
           <View style={styles.statBox}>
             <Text style={styles.statNum}>350</Text>
-            <Text style={styles.statLabel}>Meals Delivered</Text>
+            <Text style={styles.statLabel}>Meals</Text>
+          </View>
+          <View style={styles.statBox}>
+            <Text style={styles.statNum}>4.9</Text>
+            <Text style={styles.statLabel}>Rating</Text>
           </View>
         </View>
 
         <View style={styles.menuSection}>
           <View style={styles.toggleRow}>
-            <Text style={styles.toggleLabel}>Go Online</Text>
+            <View>
+              <Text style={styles.toggleLabel}>Go Online</Text>
+              <Text style={styles.toggleDesc}>Accept new delivery requests</Text>
+            </View>
             <Switch
               value={isOnline}
               onValueChange={setOnline}
-              trackColor={{ false: '#e0e0e0', true: '#2ecc71' }}
-              thumbColor={'#ffffff'}
-              ios_backgroundColor="#e0e0e0"
+              trackColor={{ false: '#EEEEEE', true: '#FC8019' }}
+              thumbColor={'#FFFFFF'}
+              ios_backgroundColor="#EEEEEE"
             />
           </View>
           
           <TouchableOpacity style={styles.menuItem}>
+            <Text style={styles.menuIcon}>⚙️</Text>
             <Text style={styles.menuItemText}>Account Settings</Text>
             <Text style={styles.menuArrow}>›</Text>
           </TouchableOpacity>
           
           <TouchableOpacity style={styles.menuItem}>
+            <Text style={styles.menuIcon}>📊</Text>
+            <Text style={styles.menuItemText}>My Stats</Text>
+            <Text style={styles.menuArrow}>›</Text>
+          </TouchableOpacity>
+          
+          <TouchableOpacity style={[styles.menuItem, { borderBottomWidth: 0 }]}>
+            <Text style={styles.menuIcon}>❓</Text>
             <Text style={styles.menuItemText}>Help & Support</Text>
             <Text style={styles.menuArrow}>›</Text>
           </TouchableOpacity>
@@ -64,84 +80,54 @@ export default function ProfileScreen() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: '#f9fafb' },
+  safeArea: { flex: 1, backgroundColor: '#FAFAFA' },
   container: { flexGrow: 1, padding: 20 },
   header: { alignItems: 'center', marginTop: 20, marginBottom: 32 },
   avatar: { 
-    width: 96, 
-    height: 96, 
-    borderRadius: 48, 
-    backgroundColor: '#a8e6cf', 
-    alignItems: 'center', 
-    justifyContent: 'center', 
-    marginBottom: 16 
+    width: 96, height: 96, borderRadius: 32, backgroundColor: '#FFF5ED', 
+    alignItems: 'center', justifyContent: 'center', marginBottom: 16,
   },
-  avatarText: { fontSize: 32, fontWeight: '700', color: '#2ecc71' },
-  name: { fontSize: 24, fontWeight: '800', color: '#333333', marginBottom: 8 },
-  statusBadge: { paddingHorizontal: 12, paddingVertical: 4, borderRadius: 12 },
-  statusOnline: { backgroundColor: '#e8f8f0' },
-  statusOffline: { backgroundColor: '#f0f0f0' },
+  avatarText: { fontSize: 32, fontWeight: '800', color: '#FC8019' },
+  name: { fontSize: 24, fontWeight: '900', color: '#333333', marginBottom: 10 },
+  statusBadge: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, paddingVertical: 6, borderRadius: 16, gap: 6 },
+  statusOnline: { backgroundColor: '#E8F8F0' },
+  statusOffline: { backgroundColor: '#F5F5F5' },
+  statusDot: { width: 8, height: 8, borderRadius: 4 },
+  dotOnline: { backgroundColor: '#34C759' },
+  dotOffline: { backgroundColor: '#CCCCCC' },
   statusText: { fontSize: 12, fontWeight: '700', letterSpacing: 0.5 },
-  statusTextOnline: { color: '#2ecc71' },
-  statusTextOffline: { color: '#666666' },
+  statusTextOnline: { color: '#34C759' },
+  statusTextOffline: { color: '#888888' },
   
-  statsRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 32 },
+  statsRow: { flexDirection: 'row', gap: 12, marginBottom: 24 },
   statBox: { 
-    flex: 1, 
-    backgroundColor: '#ffffff', 
-    marginHorizontal: 6, 
-    padding: 20, 
-    borderRadius: 16, 
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOpacity: 0.04,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 2,
+    flex: 1, backgroundColor: '#FFFFFF', padding: 20, borderRadius: 20, alignItems: 'center',
+    borderWidth: 1, borderColor: '#EEEEEE',
   },
-  statNum: { fontSize: 28, fontWeight: '800', color: '#2ecc71', marginBottom: 4 },
-  statLabel: { fontSize: 13, color: '#666666', fontWeight: '500' },
+  statNum: { fontSize: 28, fontWeight: '900', color: '#FC8019', marginBottom: 4 },
+  statLabel: { fontSize: 13, color: '#888888', fontWeight: '600' },
   
   menuSection: {
-    backgroundColor: '#ffffff',
-    borderRadius: 16,
-    paddingHorizontal: 20,
-    marginBottom: 32,
-    shadowColor: '#000',
-    shadowOpacity: 0.04,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 2,
+    backgroundColor: '#FFFFFF', borderRadius: 20, paddingHorizontal: 20, marginBottom: 24,
+    borderWidth: 1, borderColor: '#EEEEEE',
   },
   toggleRow: { 
-    flexDirection: 'row', 
-    justifyContent: 'space-between', 
-    alignItems: 'center', 
-    paddingVertical: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0'
+    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', 
+    paddingVertical: 18, borderBottomWidth: 1, borderBottomColor: '#F5F5F5',
   },
-  toggleLabel: { fontSize: 16, fontWeight: '600', color: '#333333' },
+  toggleLabel: { fontSize: 16, fontWeight: '700', color: '#333333' },
+  toggleDesc: { fontSize: 12, color: '#AAAAAA', fontWeight: '500', marginTop: 2 },
   menuItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0'
+    flexDirection: 'row', alignItems: 'center', paddingVertical: 18,
+    borderBottomWidth: 1, borderBottomColor: '#F5F5F5',
   },
-  menuItemText: { fontSize: 16, fontWeight: '500', color: '#333333' },
-  menuArrow: { fontSize: 20, color: '#cccccc' },
+  menuIcon: { fontSize: 18, marginRight: 12 },
+  menuItemText: { fontSize: 16, fontWeight: '600', color: '#333333', flex: 1 },
+  menuArrow: { fontSize: 22, color: '#CCCCCC' },
   
   logoutBtn: { 
-    height: 56, 
-    borderRadius: 12, 
-    alignItems: 'center', 
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: '#e0e0e0',
-    backgroundColor: '#ffffff',
-    marginBottom: 20
+    height: 56, borderRadius: 16, alignItems: 'center', justifyContent: 'center',
+    backgroundColor: '#FFEEED', borderWidth: 1, borderColor: '#FFDADA', marginBottom: 20,
   },
-  logoutText: { color: '#333333', fontSize: 16, fontWeight: '700' }
+  logoutText: { color: '#E23744', fontSize: 16, fontWeight: '800' },
 });

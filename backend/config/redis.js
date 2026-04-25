@@ -4,7 +4,7 @@
  * In production, connects to Upstash Redis.
  */
 
-const DEMO_MODE = !process.env.REDIS_URL;
+const DEMO_MODE = true; // Forced true due to Upstash Redis free tier quota limit
 
 if (DEMO_MODE) {
   console.log('⚠️  DEMO MODE: Using in-memory Redis mock (no Redis server)');
